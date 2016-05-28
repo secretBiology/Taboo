@@ -1,0 +1,12 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="card_width">250sp</dimen>
+    <dimen name="card_height">350sp</dimen>
+    <dimen name="final_result_card">300sp</dimen>
+    <dimen name="main_word_size">30sp</dimen>
+    <dimen name="sub_word_size">20sp</dimen>
+    <dimen name="time_left_text_size">15sp</dimen>
+</resources>
