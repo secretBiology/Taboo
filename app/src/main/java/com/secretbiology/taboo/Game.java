@@ -71,6 +71,9 @@ public class Game extends AppCompatActivity {
         rounds = db.getInt(GameVariables.NUMBER_OF_ROUNDS, GameVariables.DEFAULT_NUMBER_OF_ROUNDS);
         totalRounds =  rounds* 2;
 
+        //Keep screen on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         //Colors
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.game_action_bar);
@@ -100,7 +103,7 @@ public class Game extends AppCompatActivity {
                 public void onClick(View v) {
                     currentWord = (int) (Math.random() * TotalWords);
                     changeWord(wordData[currentWord]);
-                    totalPoints = totalPoints + GameVariables.CORRECT_ANSWER;
+                    totalPoints = totalPoints + db.getInt(GameVariables.CORRECT_ANSWER,GameVariables.CORRECT_ANSWER_DEFAULT);
                     pointText.setText(String.valueOf(totalPoints));
                     savePoints();
                     saveCorrect();
@@ -115,7 +118,7 @@ public class Game extends AppCompatActivity {
                 public void onClick(View v) {
                     currentWord = (int) (Math.random() * TotalWords);
                     changeWord(wordData[currentWord]);
-                    totalPoints = totalPoints + GameVariables.SKIP;
+                    totalPoints = totalPoints + db.getInt(GameVariables.SKIP,GameVariables.SKIP_DEFAULT);
                     pointText.setText(String.valueOf(totalPoints));
                     savePoints();
                     saveSkipped();
@@ -130,7 +133,7 @@ public class Game extends AppCompatActivity {
                 public void onClick(View v) {
                     currentWord = (int) (Math.random() * TotalWords);
                     changeWord(wordData[currentWord]);
-                    totalPoints = totalPoints + GameVariables.TABOO;
+                    totalPoints = totalPoints + db.getInt(GameVariables.TABOO,GameVariables.TABOO_DEFAULT);
                     pointText.setText(String.valueOf(totalPoints));
                     savePoints();
                     saveTaboo();
@@ -236,6 +239,7 @@ public class Game extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     alertDialog.dismiss();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     startActivity(new Intent(Game.this, Home.class));
                 }
             });
@@ -379,6 +383,7 @@ public class Game extends AppCompatActivity {
                if (timeLeftTimer != null) {
                    timeLeftTimer.cancel();
                }
+               getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                startActivity(new Intent(Game.this, ResultPage.class));
            }
            else {
@@ -436,6 +441,7 @@ public class Game extends AppCompatActivity {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        alertDialog.dismiss();
+                       getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                        startActivity(new Intent(Game.this, Home.class));
                    }
                });
@@ -453,7 +459,10 @@ public class Game extends AppCompatActivity {
         super.onBackPressed();
         db.edit().putInt(GameVariables.TEAM_RED_POINTS,0).apply();
         db.edit().putInt(GameVariables.TEAM_BLUE_POINTS,0).apply();
-        timeLeftTimer.cancel();
+        if(timeLeftTimer!=null) {
+            timeLeftTimer.cancel();
+        }
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 
@@ -527,5 +536,11 @@ public class Game extends AppCompatActivity {
         outState.putInt(SavedGame.BLUE_TABOO, db.getInt(GameVariables.BLUE_TABOO,0));
         outState.putInt(SavedGame.BLUE_ROUND, bluTeamRound);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }

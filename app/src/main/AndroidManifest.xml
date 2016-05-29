@@ -16,7 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Game" />
-        <activity android:name=".activity.ResultPage"></activity>
+        <activity android:name=".activity.ResultPage" />
+        <activity android:name=".activity.PointSystem"
+            android:label="@string/activity_point_system"/>
     </application>
 
 </manifest>

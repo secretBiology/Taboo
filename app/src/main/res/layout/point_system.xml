@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.secretbiology.taboo.activity.PointSystem">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Correct Answer"
+            android:id="@+id/textView14"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Current Value : 10"
+            android:id="@+id/correct_text"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="100"
+            android:gravity="center"
+            android:layout_marginTop="10sp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/correct_0"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:id="@+id/correct_10"
+                android:background="@color/home_clicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:id="@+id/correct_20"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Custom"
+                android:id="@+id/correct_custom"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Skip Word"
+            android:id="@+id/textView20"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Current Value : -3"
+            android:id="@+id/skip_text"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:weightSum="100"
+            android:gravity="center"
+            android:layout_marginTop="10sp" >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-10"
+                android:id="@+id/skip_m10"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-3"
+                android:id="@+id/skip_m3"
+                android:background="@color/home_clicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/skip_0"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Custom"
+                android:id="@+id/skip_custom"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Taboo Word*"
+            android:id="@+id/textView22"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Current Value : -5"
+            android:id="@+id/taboo_text"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:weightSum="100"
+            android:gravity="center"
+            android:layout_marginTop="10sp" >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-10"
+                android:id="@+id/taboo_m10"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-5"
+                android:id="@+id/taboo_m5"
+                android:background="@color/home_clicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/taboo_0"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Custom"
+                android:id="@+id/taboo_custom"
+                android:background="@color/home_notclicked"
+                android:layout_weight="25" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="* Taboo word means person uses any one of forbidden words"
+            android:id="@+id/textView24"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:layout_marginTop="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Game"
+            android:id="@+id/start_game"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20sp"
+            android:background="@color/colorPrimary" />
+    </LinearLayout>
+</ScrollView>

@@ -1,5 +1,7 @@
 package com.secretbiology.taboo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,11 +9,16 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.secretbiology.taboo.activity.PointSystem;
 import com.secretbiology.taboo.constants.GameVariables;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Home extends AppCompatActivity implements View.OnClickListener {
 
@@ -119,7 +126,25 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                 time5min.setBackgroundColor(getResources().getColor(R.color.home_clicked));
                 roundTime.setText("Current: 3 min"); break;
             case R.id.start_button:
-                startActivity(new Intent(Home.this, Game.class)); break;
+               final AlertDialog alertDialog = new AlertDialog.Builder(Home.this).create();
+                alertDialog.setTitle("Current Point System");
+                alertDialog.setMessage("Correct Answer : "+db.getInt(GameVariables.CORRECT_ANSWER,GameVariables.CORRECT_ANSWER_DEFAULT) + "\nSkip : "
+                        + db.getInt(GameVariables.SKIP,GameVariables.SKIP_DEFAULT)
+                        + " \nTaboo : "+ db.getInt(GameVariables.TABOO,GameVariables.TABOO_DEFAULT));
+                       alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Home.this, Game.class));
+                    }
+                });
+
+                alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Change", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Home.this, PointSystem.class));
+                    }
+                });
+                alertDialog.show();
+
 
 
         }

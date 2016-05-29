@@ -8,9 +8,12 @@ public class GameVariables {
     public static final String NUMBER_OF_ROUNDS = "numberOfRounds";
     public static final int DEFAULT_NUMBER_OF_ROUNDS = 5;
 
-    public static final int CORRECT_ANSWER = 10;
-    public static final int SKIP = -5;
-    public static final int TABOO = -5;
+    public static final int CORRECT_ANSWER_DEFAULT = 10;
+    public static final String CORRECT_ANSWER = "correctAns";
+    public static final int SKIP_DEFAULT = -3;
+    public static final String SKIP = "SkipAns";
+    public static final int TABOO_DEFAULT = -5;
+    public static final String TABOO = "tabooAns";
 
     public static final String TEAM_RED_POINTS = "teamRed_points";
     public static final String TEAM_BLUE_POINTS = "teamBlue_points";

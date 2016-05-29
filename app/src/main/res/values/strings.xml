@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Simple Taboo</string>
+    <string name="activity_point_system">Point System</string>
+    <string name="current_value"> Current Value : %d </string>
 </resources>

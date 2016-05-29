@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-repackageclasses 'obfuscated'
+-keepattributes Signature
+-keepattributes *Annotation*
