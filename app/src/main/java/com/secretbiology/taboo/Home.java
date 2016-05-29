@@ -75,6 +75,9 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 roundPlayers.setText("Number of rounds : "+progress);
                 db.edit().putInt(GameVariables.NUMBER_OF_ROUNDS,progress).apply();
+                if(progress==0){
+                    db.edit().putInt(GameVariables.NUMBER_OF_ROUNDS,1).apply();
+                }
             }
 
             @Override
@@ -128,5 +131,11 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         time3min.setBackgroundColor(getResources().getColor(R.color.home_notclicked));
         time5min.setBackgroundColor(getResources().getColor(R.color.home_notclicked));
         time1min.setBackgroundColor(getResources().getColor(R.color.home_notclicked));
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finishAffinity();
+
     }
 }

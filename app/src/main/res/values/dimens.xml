@@ -3,6 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!--Home -->
+
+    <dimen name="select_team_section">75sp</dimen>
+    <dimen name="select_team_section_bottom_margin">15sp</dimen>
+    <dimen name="round_time_button_height">60sp</dimen>
+    <dimen name="number_of_players_top_margin">10sp</dimen>
+
     <dimen name="card_width">250sp</dimen>
     <dimen name="card_height">350sp</dimen>
     <dimen name="final_result_card">300sp</dimen>

@@ -3,4 +3,16 @@
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
+
+    <dimen name="select_team_section">180sp</dimen>
+    <dimen name="select_team_section_bottom_margin">15sp</dimen>
+    <dimen name="round_time_button_height">60sp</dimen>
+    <dimen name="number_of_players_top_margin">10sp</dimen>
+
+    <dimen name="card_width">250sp</dimen>
+    <dimen name="card_height">350sp</dimen>
+    <dimen name="final_result_card">300sp</dimen>
+    <dimen name="main_word_size">30sp</dimen>
+    <dimen name="sub_word_size">20sp</dimen>
+    <dimen name="time_left_text_size">15sp</dimen>
 </resources>
