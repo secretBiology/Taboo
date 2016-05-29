@@ -13,6 +13,7 @@
     <dimen name="card_width">250sp</dimen>
     <dimen name="card_height">350sp</dimen>
     <dimen name="final_result_card">300sp</dimen>
+    <dimen name="final_result_card_landscape">180sp</dimen>
     <dimen name="main_word_size">30sp</dimen>
     <dimen name="sub_word_size">20sp</dimen>
     <dimen name="time_left_text_size">15sp</dimen>

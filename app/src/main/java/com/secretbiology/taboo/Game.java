@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.secretbiology.taboo.activity.ResultPage;
 import com.secretbiology.taboo.constants.GameVariables;
+import com.secretbiology.taboo.constants.SavedGame;
 import com.secretbiology.taboo.words.WordSet1;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class Game extends AppCompatActivity {
     Button nextButton, skipButton, tabooButton;
     SharedPreferences db;
     Timer timeLeftTimer;
+    AlertDialog alertDialog;
 
 
     @Override
@@ -52,7 +54,6 @@ public class Game extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.game);
-
         db = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         //Reset Game Variables
         db.edit().putInt(GameVariables.TEAM_RED_POINTS, 0).apply();
@@ -137,24 +138,57 @@ public class Game extends AppCompatActivity {
             });
         }
 
-        changeTeam(1);
-        mainWord.setText("???");
-        subWord1.setText("???");
-        subWord2.setText("???");
-        subWord3.setText("???");
-        subWord4.setText("???");
-        subWord5.setText("???");
-        pointText.setText("0");
-        timeText.setText(String.valueOf(db.getInt(GameVariables.TIME_PER_ROUND,GameVariables.DEFAULT_TIME_PER_ROUND)));
-        final AlertDialog alertDialog = new AlertDialog.Builder(Game.this).create();
-        redTeamRound++;
-        alertDialog.setTitle("Team RED ready ?");
-        alertDialog.setMessage("Press Ready to start round "+redTeamRound+ " of "+ rounds);
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ready", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
+        //Check if Game has just started
+        boolean justStarted;
 
-                timeLeft = db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND);
-                alertDialog.dismiss();
+        if( savedInstanceState != null ){
+            if( savedInstanceState.getBoolean(SavedGame.IS_DIALOGUE_OPEN) && savedInstanceState.getInt(SavedGame.CURRENT_ROUND)==1){
+                justStarted = true;
+            }
+            else {
+                justStarted = false;
+            }
+        }
+        else
+        {
+            justStarted = true;
+        }
+
+
+        //If Game is saved
+        if( savedInstanceState != null && !justStarted) {
+
+            db.edit().putInt(GameVariables.TEAM_RED_POINTS, savedInstanceState.getInt(SavedGame.TEAM_RED_POINTS)).apply();
+            db.edit().putInt(GameVariables.TEAM_BLUE_POINTS, savedInstanceState.getInt(SavedGame.TEAM_BLUE_POINTS)).apply();
+            db.edit().putInt(GameVariables.RED_CORRECT, savedInstanceState.getInt(SavedGame.RED_CORRECT)).apply();
+            db.edit().putInt(GameVariables.RED_SKIP, savedInstanceState.getInt(SavedGame.RED_SKIP)).apply();
+            db.edit().putInt(GameVariables.RED_TABOO, savedInstanceState.getInt(SavedGame.RED_TABOO)).apply();
+            db.edit().putInt(GameVariables.BLUE_CORRECT, savedInstanceState.getInt(SavedGame.BLUE_CORRECT)).apply();
+            db.edit().putInt(GameVariables.BLUE_SKIP, savedInstanceState.getInt(SavedGame.BLUE_SKIP)).apply();
+            db.edit().putInt(GameVariables.BLUE_TABOO, savedInstanceState.getInt(SavedGame.BLUE_TABOO)).apply();
+
+            roundNumber = savedInstanceState.getInt(SavedGame.CURRENT_ROUND);
+            redTeamRound = savedInstanceState.getInt(SavedGame.RED_ROUND);
+            bluTeamRound = savedInstanceState.getInt(SavedGame.BLUE_ROUND);
+
+            currentTeam = savedInstanceState.getInt(SavedGame.CURRENT_TEAM);
+            timeLeft = savedInstanceState.getInt(SavedGame.GAME_TIME);
+            currentWord = savedInstanceState.getInt(SavedGame.CURRENT_WORD);
+
+            if(savedInstanceState.getBoolean(SavedGame.IS_DIALOGUE_OPEN)){
+                roundNumber = roundNumber-1;
+                if(currentTeam==1){
+                    bluTeamRound = bluTeamRound-1;
+                }
+                else {
+                    redTeamRound = redTeamRound-1;
+                }
+                timeLeft = 1;
+                startCountDown();
+            }
+            else {
+                changeWord(wordData[currentWord]);
+                changeTeam(currentTeam);
                 timeLeftTimer = new Timer();
                 timeLeftTimer.schedule(new TimerTask() {
                     @Override
@@ -163,20 +197,53 @@ public class Game extends AppCompatActivity {
                     }
 
                 }, 0, 1000); //1000 is milliseconds for each time tick
+            }
 
-                changeTeam(1);
-            }
-        });
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Go Back", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-                startActivity(new Intent(Game.this, Home.class));
-            }
-        });
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setCancelable(false);
-        alertDialog.show();
+        }
+        else {
+
+            changeTeam(1);
+            mainWord.setText("???");
+            subWord1.setText("???");
+            subWord2.setText("???");
+            subWord3.setText("???");
+            subWord4.setText("???");
+            subWord5.setText("???");
+            pointText.setText("0");
+            timeText.setText(String.valueOf(db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND)));
+            alertDialog = new AlertDialog.Builder(Game.this).create();
+            redTeamRound++;
+            alertDialog.setTitle("Team RED ready ?");
+            alertDialog.setMessage("Press Ready to start round " + redTeamRound + " of " + rounds);
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ready", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                    timeLeft = db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND);
+                    alertDialog.dismiss();
+                               timeLeftTimer = new Timer();
+                    timeLeftTimer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            runTimer();
+                        }
+
+                    }, 0, 1000); //1000 is milliseconds for each time tick
+
+                    changeTeam(1);
+                }
+            });
+            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Go Back", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alertDialog.dismiss();
+                    startActivity(new Intent(Game.this, Home.class));
+                }
+            });
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+
+        }
 
 
 
@@ -309,12 +376,16 @@ public class Game extends AppCompatActivity {
             roundNumber++;
 
            if(roundNumber>totalRounds){
-               timeLeftTimer.cancel();
+               if (timeLeftTimer != null) {
+                   timeLeftTimer.cancel();
+               }
                startActivity(new Intent(Game.this, ResultPage.class));
            }
            else {
 
-               timeLeftTimer.cancel();
+               if (timeLeftTimer != null) {
+                   timeLeftTimer.cancel();
+               }
 
                if (currentTeam == 1) {
                    changAppearance(2);
@@ -329,7 +400,7 @@ public class Game extends AppCompatActivity {
                subWord4.setText("???");
                subWord5.setText("???");
 
-               final AlertDialog alertDialog = new AlertDialog.Builder(Game.this).create();
+               alertDialog = new AlertDialog.Builder(Game.this).create();
                if (currentTeam == 1) {
                    bluTeamRound++;
                    alertDialog.setTitle("Team BLUE ready?");
@@ -422,4 +493,39 @@ public class Game extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        boolean dialogueOpen;
+        if(timeLeftTimer!=null) {
+            timeLeftTimer.cancel();
+        }
+        if (alertDialog!=null) {
+            if (alertDialog.isShowing()) {
+                dialogueOpen = true;
+                alertDialog.dismiss();
+            }
+            else {
+                dialogueOpen = false;
+            }
+        }
+        else {
+            dialogueOpen = false;
+        }
+        outState.putInt(SavedGame.GAME_TIME, timeLeft);
+        outState.putInt(SavedGame.CURRENT_TEAM, currentTeam);
+        outState.putInt(SavedGame.CURRENT_WORD, currentWord);
+        outState.putInt(SavedGame.CURRENT_ROUND, roundNumber);
+        outState.putBoolean(SavedGame.IS_DIALOGUE_OPEN, dialogueOpen);
+        outState.putInt(SavedGame.TEAM_BLUE_POINTS, db.getInt(GameVariables.TEAM_BLUE_POINTS,0));
+        outState.putInt(SavedGame.TEAM_RED_POINTS, db.getInt(GameVariables.TEAM_RED_POINTS,0));
+        outState.putInt(SavedGame.RED_CORRECT, db.getInt(GameVariables.RED_CORRECT,0));
+        outState.putInt(SavedGame.RED_SKIP, db.getInt(GameVariables.RED_SKIP,0));
+        outState.putInt(SavedGame.RED_TABOO, db.getInt(GameVariables.RED_TABOO,0));
+        outState.putInt(SavedGame.RED_ROUND, redTeamRound);
+        outState.putInt(SavedGame.BLUE_CORRECT, db.getInt(GameVariables.BLUE_CORRECT,0));
+        outState.putInt(SavedGame.BLUE_SKIP, db.getInt(GameVariables.BLUE_SKIP,0));
+        outState.putInt(SavedGame.BLUE_TABOO, db.getInt(GameVariables.BLUE_TABOO,0));
+        outState.putInt(SavedGame.BLUE_ROUND, bluTeamRound);
+        super.onSaveInstanceState(outState);
+    }
 }

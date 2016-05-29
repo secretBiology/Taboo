@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.secretbiology.taboo.Game">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="@dimen/card_width"
+        android:layout_height="@dimen/card_height"
+        android:weightSum="100"
+        android:gravity="center"
+        android:background="@color/team_blue_background"
+        android:id="@+id/card_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="25"
+            android:id="@+id/main_word_layout"
+            android:background="@color/team_blue_color"
+            android:layout_marginBottom="10sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Main Word"
+                android:id="@+id/main_word"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/main_word_size" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/sub_word1"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="10"
+            android:textSize="@dimen/sub_word_size"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/sub_word2"
+            android:layout_gravity="right"
+            android:layout_weight="10"
+            android:textSize="@dimen/sub_word_size"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/sub_word3"
+            android:layout_gravity="right"
+            android:layout_weight="10"
+            android:textSize="@dimen/sub_word_size"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/sub_word4"
+            android:layout_gravity="right"
+            android:layout_weight="10"
+            android:textSize="@dimen/sub_word_size"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/sub_word5"
+            android:layout_gravity="right"
+            android:layout_weight="10"
+            android:textSize="@dimen/sub_word_size"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_toEndOf="@+id/card_layout"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginLeft="40sp"
+        android:id="@+id/linearLayout10">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:id="@+id/Button_Skip"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Taboo"
+            android:id="@+id/Button_Taboo"
+            android:textColor="#ffffff"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/Button_Next"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/linearLayout"
+        android:layout_marginBottom="10sp"
+        android:weightSum="100"
+        android:layout_alignStart="@+id/linearLayout10">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"
+            android:gravity="center_vertical|right"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="100"
+                android:id="@+id/time_text" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Time Left"
+                android:id="@+id/textView"
+                android:alpha="0.8"
+                android:textSize="@dimen/time_left_text_size"
+                android:layout_weight="40"
+                android:layout_marginLeft="10sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0sp"
+            android:layout_weight="50"
+            android:gravity="center_vertical|right"
+            android:weightSum="100">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="100"
+                android:id="@+id/points_text" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Points"
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10sp"
+                android:alpha="0.8"
+                android:textSize="@dimen/time_left_text_size"
+                android:layout_weight="40" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
