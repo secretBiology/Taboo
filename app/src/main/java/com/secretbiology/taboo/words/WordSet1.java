@@ -1,6 +1,8 @@
 package com.secretbiology.taboo.words;
 
-//This set was modified from website : https://embracingchina.files.wordpress.com/2014/08/taboo-game.pdf on 28th May 2016
+//This set was modified from following websites :
+// (1) https://embracingchina.files.wordpress.com/2014/08/taboo-game.pdf on 28th May 2016
+// (2) https://en.islcollective.com
 
 public class WordSet1 {
 
@@ -190,7 +192,30 @@ public class WordSet1 {
                 {"Cook Book", "Food", "How to", "Kitchen", "Manual", "Guide"},
                 {"Continent", "Ocean", "Asia", "Land", "Seven", "Earth"},
                 {"Director", "Movie", "Producer", "Main", "In Charge", "Position"},
-                {"Advice", "Guide", "Wise", "Recommend", "What to do", "Help"}
+                {"Advice", "Guide", "Wise", "Recommend", "What to do", "Help"},
+                {"You", "Me", "I", "Him", "Her", "Pronoun"},
+                {"Cafe", "Food", "Snack", "Coffee", "Drink", "Eat"},
+                {"Television", "Watch", "Cartoon", "Movies", "Channel", "TV"},
+                {"Violin", "Strings", "Orchestra", "Music", "Instrument", "Concert"},
+                {"Boat", "Water", "Sea", "Ship", "Captain", "Transport"},
+                {"Father", "Parent", "Husband", "Man", "Family", "Work"},
+                {"Rain", "Precipitation", "Water", "Sky", "Clouds", "Drops"},
+                {"Clown", "Joker", "Circus", "Red Nose", "Mc-Donalds", "Make-up"},
+                {"Ipod", "Music Player", "Apple", "MP3", "Iphone", "Songs"},
+                {"Lipstick", "Red", "Lips", "Purse", "Women", "Make-up"},
+                {"Fear", "Phobia", "Scare", "Taboo", "Terror", "Spiders"},
+                {"Sea", "Blue", "Sky", "Water", "Red", "Ocean"},
+                {"Chicken", "Food", "Meat", "Egg", "KFC", "Rooster"},
+                {"Napkin", "Wipe", "Mouth", "Clean", "Stack", "Spill"},
+                {"Diamond", "Rock", "Engagement", "Ring", "Jewel", "Stone"},
+                {"Bee", "Honey", "Insect", "Hive", "Sting", "Bumble"},
+                {"Honey", "Bee", "Sweet", "Hive", "Food", "Allergy"},
+                {"Milk", "White", "Cereal", "Dairy", "Liquid", "Cow"},
+                {"Dance", "Move", "Music", "Party", "Club", "Bands"},
+                {"Gorilla", "Eats Banana", "Animal", "Scary", "Monkey", "Africa"},
+                {"Glass", "Cup", "Drink", "Plate", "Kitchen", "Utensil"},
+                {"Money", "Bank", "ATM", "Wallet", "Buy", "Currency"},
+                {"Dangdut", "Dance", "Music", "Popular", "Indonesia", "Genre"}
         };
                 return allwords;
 
