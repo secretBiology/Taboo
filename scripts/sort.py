@@ -8,7 +8,8 @@ previousList =[]
 
 for line in pcontent:
 	words = line.split("\"")
-	previousList.append([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]])
+	if(len(words)>11):
+		previousList.append([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]])
 
 #Now check content from current file
 filename = "words.txt"
@@ -21,7 +22,7 @@ ErrorWords = []
 for line in content:
 	words = line.split("\"")
 	if(len(words)>11):
-		if([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]] not in previousList):
+		if([ words[1].strip() , words[3].strip() , words[5].strip() , words[7].strip() , words[9].strip(), words[11].strip()] not in previousList):
 			if(sp.isThere(words[1].lower().strip())):
 				WordList.append([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]])
 			else:

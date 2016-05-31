@@ -17,7 +17,7 @@ url = 'http://taboogame.net/?'
 #All retrieved words will be saved in this file. 
 #You can use this file later on to review words
 with open('words.txt', 'a') as file:
-	for i in range(1000):
+	for i in range(2000):
 			try:
 				results = requests.get(url)
 				if results.status_code == 200:
