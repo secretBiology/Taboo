@@ -43,6 +43,7 @@ public class Game extends AppCompatActivity {
     SharedPreferences db;
     Timer timeLeftTimer;
     AlertDialog alertDialog;
+    Bundle bundle;
 
 
     @Override
@@ -52,6 +53,7 @@ public class Game extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.game);
+        bundle = savedInstanceState;
         db = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         //Reset Game Variables
 
@@ -233,6 +235,9 @@ public class Game extends AppCompatActivity {
 
 
     }
+
+
+
     public void savePoints(){
         if (currentTeam==1){
             db.edit().putInt(GameVariables.TEAM_RED_POINTS,totalPoints).apply();
@@ -523,4 +528,6 @@ public class Game extends AppCompatActivity {
         super.onDestroy();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
+
+
 }
