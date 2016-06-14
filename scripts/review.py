@@ -4,7 +4,7 @@ import spellCheck as sp
 #Dictionary words are downloaded from https://github.com/dwyl/english-words on 31 May 2016
 
 #Now check content from current file
-filename = "words.txt"
+filename = "result_unique_words.txt"
 with open(filename, 'r') as file:
 	content = file.readlines()
 

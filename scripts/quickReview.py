@@ -7,7 +7,7 @@ from collections import Counter
 from itertools import chain
 
 #First get words retrived previously
-with open("for_review.txt", 'r') as pfile:
+with open("result_new_words.txt", 'r') as pfile:
 	pcontent = pfile.readlines()
 keyWords =[]
 subWords = []
@@ -33,14 +33,13 @@ for word in multiWords:
 	TruthTable = TruthArray.tolist()
 	mistakes = 0
 	for i in range(len(TruthTable)):
-
 		if(TruthTable[i]):
-			temp_wordList = re.sub("[^\w]", " ",  word[i+1]).split()
+			temp_wordList = re.sub("[^\w]", " ",  word[i]).split()
 			for halfWord in temp_wordList:
-				if not(sp.isThere(halfWord.lower().strip())):
+				if not(sp.isThere(words[i].lower().strip())):
 					mistakes = mistakes+1
 		if not (TruthTable[i]):
-			if not(sp.isThere(word[i+1].lower().strip())):
+			if not(sp.isThere(words[i].lower().strip())):
 					mistakes = mistakes+1
 	if(mistakes!=0):
 		spellErrors.append(word)  #Proper Spelling Mistakes
