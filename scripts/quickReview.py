@@ -55,6 +55,16 @@ dictionary = dict(zip(keyWords, subWords)) #this will remove all duplicate "Main
 uniqueKeys = list(set(keyWords))
 print(("All words: %d , Unique words: %d")%(len(keyWords),len(dictionary)))
 
+#Check againsts unique words
+with open("all_unique_words.txt", 'r') as pfile:
+	pcontent = pfile.readlines()
+previousList =[]
+
+for line in pcontent:
+	words = line.split("\"")
+	if(len(words)>11):
+		previousList.append([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]])
+
 
 with open("result_unique_words.txt",'a') as file3:
 	for key in uniqueKeys:
@@ -64,7 +74,8 @@ with open("result_unique_words.txt",'a') as file3:
 		item4 = dictionary.get(key,None)[2].strip()
 		item5 = dictionary.get(key,None)[3].strip()
 		item6 = dictionary.get(key,None)[4].strip()
-		file3.write(("{ \" %s \" ,  \" %s \" ,  \" %s \" ,  \" %s \",  \" %s \" ,  \" %s \"} ,\n")%(item1, item2, item3, item4, item5, item6))
+		if([ item1, item2, item3 , item4 , item5, item6] not in previousList):
+			file3.write(("{ \" %s \" ,  \" %s \" ,  \" %s \" ,  \" %s \",  \" %s \" ,  \" %s \"} ,\n")%(item1, item2, item3, item4, item5, item6))
 
 with open("result_spelling_errors.txt",'a') as file3:
 	for item in spellErrors:

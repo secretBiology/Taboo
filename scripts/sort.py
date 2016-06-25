@@ -12,7 +12,7 @@ for line in pcontent:
 		previousList.append([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]])
 
 #Now check content from current file
-filename = "words.txt"
+filename = "result_words.txt"
 with open(filename, 'r') as file:
 	content = file.readlines()
 

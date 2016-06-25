@@ -10,13 +10,13 @@ import re
 
 #As this is open database , there will be lot of spam words 
 #Make list of words which will be rejected by this script
-AvoidList = ["sex","gay","sperm","lesbian","fuck","fag","fap", "penis" ,  "crotch" ,  "cock",  "dick" ,  "vagina", "wet", "pussy" , "clit " ,  "saliva", "orgasm", "boob"] 
+AvoidList = ["sex","gay","sperm","lesbian","fuck","fag","fap", "penis" ,  "crotch" ,  "cock",  "dick" ,  "vagina", "wet", "pussy" , "clit " ,  "saliva", "orgasm", "boob","boobs"] 
 
 url = 'http://taboogame.net/?'
 
 #All retrieved words will be saved in this file. 
 #You can use this file later on to review words
-with open('words.txt', 'a') as file:
+with open('result_words.txt', 'a') as file:
 	for i in range(2000):
 			try:
 				results = requests.get(url)
