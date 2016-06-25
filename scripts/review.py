@@ -3,6 +3,17 @@ import msvcrt
 import spellCheck as sp
 #Dictionary words are downloaded from https://github.com/dwyl/english-words on 31 May 2016
 
+
+with open("all_unique_words.txt", 'r') as pfile:
+	pcontent = pfile.readlines()
+previousList =[]
+
+for line in pcontent:
+	words = line.split("\"")
+	if(len(words)>11):
+		previousList.append([ words[1] , words[3] , words[5] , words[7] , words[9], words[11]])
+
+
 #Now check content from current file
 filename = "result_unique_words.txt"
 with open(filename, 'r') as file:
