@@ -4,6 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!--Home -->
+    <dimen name="home_button_width">200sp</dimen>
 
     <dimen name="select_team_section">75sp</dimen>
     <dimen name="select_team_section_bottom_margin">15sp</dimen>

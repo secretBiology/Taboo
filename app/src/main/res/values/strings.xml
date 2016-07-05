@@ -2,4 +2,12 @@
     <string name="app_name">Simple Taboo</string>
     <string name="activity_point_system">Point System</string>
     <string name="current_value"> Current Value : %d </string>
+    <string name="app_details">Simple, Minimal and Fun</string>
+    <string name="home_footer"> An open source app by \'Secret Biology\'.\nIt will be always free and without ads :)</string>
+    <string name="home_footer_landscape"> An open source app by \'Secret Biology\'. It will be always free and without adds :)</string>
+    <string name="howtoplay_1"><b>Step 1</b>: Gather a few friends, the more the merrier :)\n\n<b>Step 2</b>: Make 2 teams.\n\n<b>Step 3</b>: A person from team 1 will start the
+        game by pressing \'start game\'. Start with standard settings for now.\n\n<b>Step 4</b>: He/she will see 6 words on the screen. One in bold colors at the top and other 5 below it.
+        \n\n<b>Step 5</b> : He/she should describe the word in bold to the team without using the 5 words mentioned below. Any action or signs are prohibited. These 5 words are called
+        \"<b>Taboo words</b>\" :D\n\n<b>Step 6</b>: Now the team has to guess maximum number of words within the given time. When time is over, person passes the app to next team and the cycle continues till you finish all rounds.\n\n<b>Step 7</b>: One can skip
+        any word if he/she wants. If person uses any of \"taboo\" words, he/she has to press \'taboo\' which will invite some penalty and next word will pop up on the screen\n\n<b>Step 8</b>: You can be as creative as you want. Imagination is the limit. Happy tabooing :)</string>
 </resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "442862828025",
+    "firebase_url": "https://taboo-3c815.firebaseio.com",
+    "project_id": "taboo-3c815",
+    "storage_bucket": "taboo-3c815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442862828025:android:098dbcfa6f346504",
+        "android_client_info": {
+          "package_name": "com.secretbiology.taboo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442862828025-s89petpuhrigvfffs7s3osdaoc37bp8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6aq9Fxcg4lPsZD9HNy9PQWDfLY-sTGFM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

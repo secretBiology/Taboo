@@ -21,6 +21,7 @@ import com.secretbiology.taboo.activity.ResultPage;
 import com.secretbiology.taboo.constants.GameVariables;
 import com.secretbiology.taboo.constants.SavedGame;
 import com.secretbiology.taboo.words.AllWords;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -237,44 +238,39 @@ public class Game extends AppCompatActivity {
     }
 
 
-
-    public void savePoints(){
-        if (currentTeam==1){
-            db.edit().putInt(GameVariables.TEAM_RED_POINTS,totalPoints).apply();
-        }
-        else {
-            db.edit().putInt(GameVariables.TEAM_BLUE_POINTS,totalPoints).apply();
+    public void savePoints() {
+        if (currentTeam == 1) {
+            db.edit().putInt(GameVariables.TEAM_RED_POINTS, totalPoints).apply();
+        } else {
+            db.edit().putInt(GameVariables.TEAM_BLUE_POINTS, totalPoints).apply();
         }
     }
 
-    public void saveCorrect(){
-        if (currentTeam==1){
-            db.edit().putInt(GameVariables.RED_CORRECT, db.getInt(GameVariables.RED_CORRECT,0)+1).apply();
-        }
-        else {
-            db.edit().putInt(GameVariables.BLUE_CORRECT, db.getInt(GameVariables.BLUE_CORRECT,0)+1).apply();
-        }
-    }
-
-    public void saveSkipped(){
-        if (currentTeam==1){
-            db.edit().putInt(GameVariables.RED_SKIP, db.getInt(GameVariables.RED_SKIP,0)+1).apply();
-        }
-        else {
-            db.edit().putInt(GameVariables.BLUE_SKIP, db.getInt(GameVariables.BLUE_SKIP,0)+1).apply();
+    public void saveCorrect() {
+        if (currentTeam == 1) {
+            db.edit().putInt(GameVariables.RED_CORRECT, db.getInt(GameVariables.RED_CORRECT, 0) + 1).apply();
+        } else {
+            db.edit().putInt(GameVariables.BLUE_CORRECT, db.getInt(GameVariables.BLUE_CORRECT, 0) + 1).apply();
         }
     }
 
-    public void saveTaboo(){
-        if (currentTeam==1){
-            db.edit().putInt(GameVariables.RED_TABOO, db.getInt(GameVariables.RED_TABOO,0)+1).apply();
-        }
-        else {
-            db.edit().putInt(GameVariables.BLUE_TABOO, db.getInt(GameVariables.BLUE_TABOO,0)+1).apply();
+    public void saveSkipped() {
+        if (currentTeam == 1) {
+            db.edit().putInt(GameVariables.RED_SKIP, db.getInt(GameVariables.RED_SKIP, 0) + 1).apply();
+        } else {
+            db.edit().putInt(GameVariables.BLUE_SKIP, db.getInt(GameVariables.BLUE_SKIP, 0) + 1).apply();
         }
     }
 
-    public void changeWord(String[] words){
+    public void saveTaboo() {
+        if (currentTeam == 1) {
+            db.edit().putInt(GameVariables.RED_TABOO, db.getInt(GameVariables.RED_TABOO, 0) + 1).apply();
+        } else {
+            db.edit().putInt(GameVariables.BLUE_TABOO, db.getInt(GameVariables.BLUE_TABOO, 0) + 1).apply();
+        }
+    }
+
+    public void changeWord(String[] words) {
 
         //This assumes 5 sub-words
 
@@ -288,40 +284,36 @@ public class Game extends AppCompatActivity {
         List<String> subWordList = new ArrayList<>();
         subWordList.addAll(Arrays.asList(words).subList(1, words.length));
         Collections.shuffle(subWordList);
-        if(subWordList.size()==5) {
+        if (subWordList.size() == 5) {
             subWord1.setText(subWordList.get(0));
             subWord2.setText(subWordList.get(1));
             subWord3.setText(subWordList.get(2));
             subWord4.setText(subWordList.get(3));
             subWord5.setText(subWordList.get(4));
-        }
-        else if (subWordList.size()==4){
+        } else if (subWordList.size() == 4) {
             subWord1.setText(subWordList.get(0));
             subWord2.setText(subWordList.get(1));
             subWord3.setText(subWordList.get(2));
             subWord4.setText(subWordList.get(3));
-        }
-        else if (subWordList.size()==3){
+        } else if (subWordList.size() == 3) {
             subWord1.setText(subWordList.get(0));
             subWord2.setText(subWordList.get(1));
             subWord3.setText(subWordList.get(2));
-        }
-        else
-        {
-            Log.i("Smaller words","Smaller lists not allowed");
+        } else {
+            Log.i("Smaller words", "Smaller lists not allowed");
         }
 
     }
 
-    public void changeTeam(int team){
+    public void changeTeam(int team) {
 
-        db.edit().putInt(GameVariables.CURRENT_WORD,(int) (Math.random() * TotalWords)).apply();
-        changeWord(wordData[db.getInt(GameVariables.CURRENT_WORD,GameVariables.DEFAULT_CURRENT_WORD)]);
+        db.edit().putInt(GameVariables.CURRENT_WORD, (int) (Math.random() * TotalWords)).apply();
+        changeWord(wordData[db.getInt(GameVariables.CURRENT_WORD, GameVariables.DEFAULT_CURRENT_WORD)]);
 
         switch (team) {
             case 1:
                 currentTeam = 1;
-                totalPoints = db.getInt(GameVariables.TEAM_RED_POINTS,0);
+                totalPoints = db.getInt(GameVariables.TEAM_RED_POINTS, 0);
                 actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.team_red_color)));
                 mainWordHolder.setBackgroundColor(getResources().getColor(R.color.team_red_color));
                 card.setBackgroundColor(getResources().getColor(R.color.team_red_background));
@@ -334,7 +326,7 @@ public class Game extends AppCompatActivity {
 
             case 2:
                 currentTeam = 2;
-                totalPoints = db.getInt(GameVariables.TEAM_BLUE_POINTS,0);
+                totalPoints = db.getInt(GameVariables.TEAM_BLUE_POINTS, 0);
                 actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.team_blue_color)));
                 mainWordHolder.setBackgroundColor(getResources().getColor(R.color.team_blue_color));
                 card.setBackgroundColor(getResources().getColor(R.color.team_blue_background));
@@ -352,89 +344,89 @@ public class Game extends AppCompatActivity {
     private void runTimer() {
         this.runOnUiThread(Timer_Tick);
     }
+
     private Runnable Timer_Tick = new Runnable() {
         public void run() {
             startCountDown();
         }
     };
 
-    public void startCountDown(){
-        timeLeft = timeLeft -1 ;
+    public void startCountDown() {
+        timeLeft = timeLeft - 1;
         timeText.setText(String.valueOf(timeLeft));
 
-       if (timeLeft == 0) {
+        if (timeLeft == 0) {
             roundNumber++;
 
-           if(roundNumber>totalRounds){
-               if (timeLeftTimer != null) {
-                   timeLeftTimer.cancel();
-               }
-               getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-               startActivity(new Intent(Game.this, ResultPage.class));
-           }
-           else {
+            if (roundNumber > totalRounds) {
+                if (timeLeftTimer != null) {
+                    timeLeftTimer.cancel();
+                }
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                startActivity(new Intent(Game.this, ResultPage.class));
+            } else {
 
-               if (timeLeftTimer != null) {
-                   timeLeftTimer.cancel();
-               }
+                if (timeLeftTimer != null) {
+                    timeLeftTimer.cancel();
+                }
 
-               if (currentTeam == 1) {
-                   changAppearance(2);
-               } else {
-                   changAppearance(1);
-               }
+                if (currentTeam == 1) {
+                    changAppearance(2);
+                } else {
+                    changAppearance(1);
+                }
 
-               mainWord.setText("???");
-               subWord1.setText("???");
-               subWord2.setText("???");
-               subWord3.setText("???");
-               subWord4.setText("???");
-               subWord5.setText("???");
+                mainWord.setText("???");
+                subWord1.setText("???");
+                subWord2.setText("???");
+                subWord3.setText("???");
+                subWord4.setText("???");
+                subWord5.setText("???");
 
-               alertDialog = new AlertDialog.Builder(Game.this).create();
-               if (currentTeam == 1) {
-                   bluTeamRound++;
-                   alertDialog.setTitle("Team BLUE ready?");
-                   alertDialog.setMessage("Press Ready to start the round " + bluTeamRound + " of " + rounds);
-               } else {
-                   redTeamRound++;
-                   alertDialog.setTitle("Team RED ready ?");
-                   alertDialog.setMessage("Press Ready to start the round " + redTeamRound + " of " + rounds);
-               }
+                alertDialog = new AlertDialog.Builder(Game.this).create();
+                if (currentTeam == 1) {
+                    bluTeamRound++;
+                    alertDialog.setTitle("Team BLUE ready?");
+                    alertDialog.setMessage("Press Ready to start the round " + bluTeamRound + " of " + rounds);
+                } else {
+                    redTeamRound++;
+                    alertDialog.setTitle("Team RED ready ?");
+                    alertDialog.setMessage("Press Ready to start the round " + redTeamRound + " of " + rounds);
+                }
 
-               alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ready", new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int which) {
+                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ready", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
 
-                       timeLeft = db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND);
-                       alertDialog.dismiss();
-                       timeLeftTimer = new Timer();
-                       timeLeftTimer.schedule(new TimerTask() {
-                           @Override
-                           public void run() {
-                               runTimer();
-                           }
+                        timeLeft = db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND);
+                        alertDialog.dismiss();
+                        timeLeftTimer = new Timer();
+                        timeLeftTimer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                runTimer();
+                            }
 
-                       }, 0, 1000); //1000 is milliseconds for each time tick
+                        }, 0, 1000); //1000 is milliseconds for each time tick
 
-                       if (currentTeam == 1) {
-                           changeTeam(2);
-                       } else {
-                           changeTeam(1);
-                       }
-                   }
-               });
-               alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "End Game", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       alertDialog.dismiss();
-                       getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                       startActivity(new Intent(Game.this, Home.class));
-                   }
-               });
-               alertDialog.setCanceledOnTouchOutside(false);
-               alertDialog.setCancelable(false);
-               alertDialog.show();
-           }
+                        if (currentTeam == 1) {
+                            changeTeam(2);
+                        } else {
+                            changeTeam(1);
+                        }
+                    }
+                });
+                alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "End Game", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                        startActivity(new Intent(Game.this, Home.class));
+                    }
+                });
+                alertDialog.setCanceledOnTouchOutside(false);
+                alertDialog.setCancelable(false);
+                alertDialog.show();
+            }
         }
 
 
@@ -443,22 +435,22 @@ public class Game extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        db.edit().putInt(GameVariables.TEAM_RED_POINTS,0).apply();
-        db.edit().putInt(GameVariables.TEAM_BLUE_POINTS,0).apply();
-        if(timeLeftTimer!=null) {
+        db.edit().putInt(GameVariables.TEAM_RED_POINTS, 0).apply();
+        db.edit().putInt(GameVariables.TEAM_BLUE_POINTS, 0).apply();
+        if (timeLeftTimer != null) {
             timeLeftTimer.cancel();
         }
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 
-    public void changAppearance(int team){
+    public void changAppearance(int team) {
 
-        changeWord(wordData[db.getInt(GameVariables.CURRENT_WORD,GameVariables.DEFAULT_CURRENT_WORD)]);
+        changeWord(wordData[db.getInt(GameVariables.CURRENT_WORD, GameVariables.DEFAULT_CURRENT_WORD)]);
 
         switch (team) {
             case 1:
-                totalPoints = db.getInt(GameVariables.TEAM_RED_POINTS,0);
+                totalPoints = db.getInt(GameVariables.TEAM_RED_POINTS, 0);
                 actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.team_red_color)));
                 mainWordHolder.setBackgroundColor(getResources().getColor(R.color.team_red_color));
                 card.setBackgroundColor(getResources().getColor(R.color.team_red_background));
@@ -467,11 +459,11 @@ public class Game extends AppCompatActivity {
                 tabooButton.setBackgroundColor(getResources().getColor(R.color.team_red_color));
                 actionBarTitle.setText("Team RED".toUpperCase());
                 pointText.setText(String.valueOf(totalPoints));
-                timeText.setText(String.valueOf(db.getInt(GameVariables.TIME_PER_ROUND,GameVariables.DEFAULT_TIME_PER_ROUND)));
+                timeText.setText(String.valueOf(db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND)));
                 break;
 
             case 2:
-                totalPoints = db.getInt(GameVariables.TEAM_BLUE_POINTS,0);
+                totalPoints = db.getInt(GameVariables.TEAM_BLUE_POINTS, 0);
                 actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.team_blue_color)));
                 mainWordHolder.setBackgroundColor(getResources().getColor(R.color.team_blue_color));
                 card.setBackgroundColor(getResources().getColor(R.color.team_blue_background));
@@ -480,7 +472,7 @@ public class Game extends AppCompatActivity {
                 tabooButton.setBackgroundColor(getResources().getColor(R.color.team_blue_color));
                 actionBarTitle.setText("Team BLUE".toUpperCase());
                 pointText.setText(String.valueOf(totalPoints));
-                timeText.setText(String.valueOf(db.getInt(GameVariables.TIME_PER_ROUND,GameVariables.DEFAULT_TIME_PER_ROUND)));
+                timeText.setText(String.valueOf(db.getInt(GameVariables.TIME_PER_ROUND, GameVariables.DEFAULT_TIME_PER_ROUND)));
                 break;
 
         }
@@ -490,35 +482,33 @@ public class Game extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         boolean dialogueOpen;
-        if(timeLeftTimer!=null) {
+        if (timeLeftTimer != null) {
             timeLeftTimer.cancel();
         }
-        if (alertDialog!=null) {
+        if (alertDialog != null) {
             if (alertDialog.isShowing()) {
                 dialogueOpen = true;
                 alertDialog.dismiss();
-            }
-            else {
+            } else {
                 dialogueOpen = false;
             }
-        }
-        else {
+        } else {
             dialogueOpen = false;
         }
         outState.putInt(SavedGame.GAME_TIME, timeLeft);
         outState.putInt(SavedGame.CURRENT_TEAM, currentTeam);
-        outState.putInt(SavedGame.CURRENT_WORD, db.getInt(GameVariables.CURRENT_WORD,GameVariables.DEFAULT_CURRENT_WORD));
+        outState.putInt(SavedGame.CURRENT_WORD, db.getInt(GameVariables.CURRENT_WORD, GameVariables.DEFAULT_CURRENT_WORD));
         outState.putInt(SavedGame.CURRENT_ROUND, roundNumber);
         outState.putBoolean(SavedGame.IS_DIALOGUE_OPEN, dialogueOpen);
-        outState.putInt(SavedGame.TEAM_BLUE_POINTS, db.getInt(GameVariables.TEAM_BLUE_POINTS,0));
-        outState.putInt(SavedGame.TEAM_RED_POINTS, db.getInt(GameVariables.TEAM_RED_POINTS,0));
-        outState.putInt(SavedGame.RED_CORRECT, db.getInt(GameVariables.RED_CORRECT,0));
-        outState.putInt(SavedGame.RED_SKIP, db.getInt(GameVariables.RED_SKIP,0));
-        outState.putInt(SavedGame.RED_TABOO, db.getInt(GameVariables.RED_TABOO,0));
+        outState.putInt(SavedGame.TEAM_BLUE_POINTS, db.getInt(GameVariables.TEAM_BLUE_POINTS, 0));
+        outState.putInt(SavedGame.TEAM_RED_POINTS, db.getInt(GameVariables.TEAM_RED_POINTS, 0));
+        outState.putInt(SavedGame.RED_CORRECT, db.getInt(GameVariables.RED_CORRECT, 0));
+        outState.putInt(SavedGame.RED_SKIP, db.getInt(GameVariables.RED_SKIP, 0));
+        outState.putInt(SavedGame.RED_TABOO, db.getInt(GameVariables.RED_TABOO, 0));
         outState.putInt(SavedGame.RED_ROUND, redTeamRound);
-        outState.putInt(SavedGame.BLUE_CORRECT, db.getInt(GameVariables.BLUE_CORRECT,0));
-        outState.putInt(SavedGame.BLUE_SKIP, db.getInt(GameVariables.BLUE_SKIP,0));
-        outState.putInt(SavedGame.BLUE_TABOO, db.getInt(GameVariables.BLUE_TABOO,0));
+        outState.putInt(SavedGame.BLUE_CORRECT, db.getInt(GameVariables.BLUE_CORRECT, 0));
+        outState.putInt(SavedGame.BLUE_SKIP, db.getInt(GameVariables.BLUE_SKIP, 0));
+        outState.putInt(SavedGame.BLUE_TABOO, db.getInt(GameVariables.BLUE_TABOO, 0));
         outState.putInt(SavedGame.BLUE_ROUND, bluTeamRound);
         super.onSaveInstanceState(outState);
     }
@@ -529,5 +519,9 @@ public class Game extends AppCompatActivity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
 }
